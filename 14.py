@@ -1,0 +1,49 @@
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def insert(self, data):
+
+        new_node = Node(data)
+        new_node.next = self.head
+        self.head = new_node
+
+    def delete(self, data):
+
+        temp = self.head
+        prev = None
+
+        while temp and temp.data != data:
+            prev = temp
+            temp = temp.next
+
+            if temp is None:
+                return
+
+            if prev is None:
+                self.head = temp.next
+            else:
+                prev.next = temp.next
+
+    def traverse(self):
+        temp = self.head
+        while temp:
+            print(temp.data, end=" -> ")
+            temp = temp.next
+
+
+linked_list = LinkedList()
+
+linked_list.insert(30)
+linked_list.insert(20)
+linked_list.insert(10)
+
+linked_list.delete(20)
+
+linked_list.traverse()
